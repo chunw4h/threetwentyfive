@@ -1,0 +1,31 @@
+body {
+  background-color: #d6e9f8;
+  font-family: Georgia, serif;
+  text-align: center;
+  margin: 40px auto;
+  max-width: 400px;
+}
+
+h1 {
+  color: #2c4a6b;
+}
+
+#time {
+  color: #3d5a73;
+  font-size: 72px;
+  margin: 20px 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+}
