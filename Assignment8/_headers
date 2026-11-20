@@ -1,0 +1,33 @@
+# ==========================================================================
+# _headers — Netlify deploy-time configuration
+# Not served publicly; consumed at build/deploy.
+# ==========================================================================
+
+# --- Security -------------------------------------------------------------
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+
+# --- Caching --------------------------------------------------------------
+# No content hashing in filenames, so nothing gets a long cache.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+# Source docs are not part of the published site.
+/prompts/*                      /404.html  404
+/A8-My-Ideas.md                 /404.html  404
+/Assignment8-Instructions.md    /404.html  404
+/README.md                      /404.html  404

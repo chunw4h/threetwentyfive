@@ -1,0 +1,186 @@
+/* ==========================================================================
+   base.css — design tokens, reset, typography, shared primitives
+   ========================================================================== */
+
+
+:root {
+    color-scheme: dark;
+
+  /* --- Palette (Blackspace base) ---------------------------------------- */
+  --c-bg:          #08080a;
+  --c-bg-rgb:      8 8 10;
+  --c-bg-soft:     #101014;
+  --c-line:        #2b2b35;
+  --c-text:        #f4f4f7;
+  --c-text-dim:    #9b9baa;
+  --c-accent:      #b9a7ff;
+  --c-accent-rgb:  185 167 255;
+
+  /* --- Type ------------------------------------------------------------- */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, "Apple SD Gothic Neo",
+               "Malgun Gothic", "Noto Sans KR", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+               "Liberation Mono", monospace;
+
+  --step--1: clamp(0.83rem, 0.80rem + 0.15vw, 0.90rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.08rem);
+  --step-1:  clamp(1.25rem, 1.15rem + 0.50vw, 1.50rem);
+  --step-2:  clamp(1.60rem, 1.40rem + 1.00vw, 2.20rem);
+  --step-3:  clamp(2.20rem, 1.70rem + 2.40vw, 3.60rem);
+
+  /* --- Space & shape ---------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.50rem;
+  --space-3: 0.75rem;
+  --space-4: 1.00rem;
+  --space-5: 1.50rem;
+  --space-6: 2.00rem;
+  --space-7: 3.00rem;
+  --space-8: 4.50rem;
+
+  --radius-sm: 6px;
+
+  --measure: 62ch;
+  --shell: 68rem;
+  --header-h: 4rem;
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 220ms;
+
+  /* --- Pointer (written by js/main.js) ---------------------------------- */
+  --pointer-x: 50vw;
+  --pointer-y: 40vh;
+}
+
+/* --- Reset ---------------------------------------------------------------- */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  background: var(--c-bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* background intentionally on <html> so the fixed backdrop paints above it */
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, canvas, video { display: block; max-width: 100%; }
+
+h1, h2, h3 {
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+
+p { text-wrap: pretty; }
+
+a { color: inherit; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+::selection { background: rgb(var(--c-accent-rgb) / 0.35); }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Utilities ------------------------------------------------------------ */
+
+.skip-link {
+  position: fixed;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--c-text);
+  color: var(--c-bg);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--dur) var(--ease);
+}
+.skip-link:focus-visible { transform: translateY(0); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --- Buttons -------------------------------------------------------------- */
+
+.button {
+  --button-bg: transparent;
+  --button-fg: var(--c-text);
+  --button-border: var(--c-line);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.7em 1.25em;
+  border: 1px solid var(--button-border);
+  border-radius: 999px;
+  background: var(--button-bg);
+  color: var(--button-fg);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+.button:hover {
+  border-color: var(--c-text-dim);
+  transform: translateY(-1px);
+}
+.button:active { transform: translateY(0); }
+
+.button--primary {
+  --button-bg: var(--c-text);
+  --button-fg: var(--c-bg);
+  --button-border: var(--c-text);
+}
+.button--primary:hover {
+  --button-bg: var(--c-accent);
+  --button-border: var(--c-accent);
+}

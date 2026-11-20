@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Kyle 카일</title>
+  <meta name="description" content="Open-source projects by Kyle 카일." />
+  <meta name="theme-color" content="#08080a" />
+
+  <meta property="og:title" content="Projects — Kyle 카일" />
+  <meta property="og:description" content="Open-source projects by Kyle 카일." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+
+  <script src="js/main.js" defer></script>
+  <script src="js/background.js" defer></script>
+  <script src="js/projects-data.js" defer></script>
+  <script src="js/projects.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="backdrop" aria-hidden="true">
+    <canvas class="backdrop__canvas" data-backdrop-canvas></canvas>
+    <div class="backdrop__layer backdrop__layer--glow"></div>
+  </div>
+
+  <header class="site-header">
+    <a class="site-header__brand" href="index.html">Kyle 카일</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="index.html">Home</a></li>
+        <li><a class="site-nav__link" href="projects.html" aria-current="page">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <section class="hero">
+      <p class="hero__eyebrow">Open source</p>
+      <h1 class="hero__title">Projects</h1>
+      <p class="hero__lede">
+        Small tools, mostly for Linux — shell installers, one-liners, and the
+        occasional experiment. Newest first.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Repositories</h2>
+      <ul class="project-grid" data-project-list></ul>
+      <noscript>
+        <p class="prose">
+          This list needs JavaScript. You can browse everything at
+          <a href="https://github.com/chunw4h">github.com/chunw4h</a>.
+        </p>
+      </noscript>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span data-year>2026</span> Kyle 카일</p>
+  </footer>
+</body>
+</html>
